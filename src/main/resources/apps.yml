@@ -85,7 +85,6 @@ com.miui.notes: Notes
 com.miui.personalassistant: App Vault
 com.miui.phrase: Frequent phrases
 com.miui.player: Music
-com.xiaomi.powerchecker: Power Detector
 com.miui.powerkeeper: Battery & performance
 com.miui.providers.weather: Weather
 com.miui.screenrecorder: Screen Recorder
@@ -118,6 +117,7 @@ com.xiaomi.mipicks: GetApps
 com.xiaomi.miplay_client: MiPlayClient
 com.xiaomi.mirecycle: Mi Recycle
 com.xiaomi.payment: Mi Credit
+com.xiaomi.powerchecker: Power Detector
 com.xiaomi.scanner: Scanner
 com.xiaomi.simactivate.service: Xiaomi SIM Activate Service
 com.xiaomi.vipaccount: Xiaomi VIP Account
