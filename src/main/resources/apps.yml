@@ -106,6 +106,7 @@ com.netflix.partner.activation: PartnerNetflixActivation
 com.qisiemoji.inputmethod: Kika Keyboard
 com.tencent.soter.soterserver: SoterService
 com.xiaomi.ab: MAB
+com.xiaomi.calendar: Mi Calendar
 com.xiaomi.discover: System Apps Updater
 com.xiaomi.gameboosterglobal: Game Turbo
 com.xiaomi.glgm: Games
