@@ -91,6 +91,10 @@ No, uninstalled apps should only come back when you reinstall them or factory re
 
 There are some apps Global MIUI doesn't let you uninstall but Chinese MIUI does. If you try to uninstall an app like that, the tool might hang. If that happens, close the tools, disconnect your device, uninstall the app manually, then launch the tools again and reconnect your device to proceed.
 
+**Why does the Uninstaller fail to uninstall some apps?**
+
+If the attempted uninstallation of an application results in a failure or anything other than success, that isn't a bug or an issue within the program. It means that ADB was not able to uninstall the application and there is nothing we can be do about it. Similary, if an uninstallation has no result at all (neither success nor failure), that means that ADB didn't report anything, therefore the program cannot derive any information about the successfulness of the uninstallation.
+
 **How do I regain uninstalled system apps?**
 
 Simply reinstall them using the Reinstaller module when connected in ADB mode. In case the Reinstaller module is disabled because your device doesn't support it, you must perform a factory reset.
