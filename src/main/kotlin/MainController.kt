@@ -932,8 +932,11 @@ class MainController : Initializable {
     @FXML
     private fun unlockButtonPressed(event: ActionEvent) {
         GlobalScope.launch {
-            if (Device.checkFastboot())
-                Command.execDisplayed(mutableListOf("fastboot", "oem", "unlock")) else checkDevice()
+            if (Device.checkFastboot()) {
+                if (confirm("All your data will be gone.")) {
+                    Command.execDisplayed(mutableListOf("fastboot", "oem", "unlock"))
+                }
+            } else checkDevice()
         }
     }
 
