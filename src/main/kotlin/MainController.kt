@@ -921,7 +921,9 @@ class MainController : Initializable {
         GlobalScope.launch {
             if (Device.checkFastboot()) {
                 if (confirm("Your partitions must be intact in order to successfully lock the bootloader.")) {
-                    Command.execDisplayed(mutableListOf("fastboot", "oem", "lock"))
+                    if (confirm("All your data will be gone.")) {
+                        Command.execDisplayed(mutableListOf("fastboot", "oem", "lock"))
+                    }
                 }
             } else checkDevice()
         }
@@ -930,8 +932,11 @@ class MainController : Initializable {
     @FXML
     private fun unlockButtonPressed(event: ActionEvent) {
         GlobalScope.launch {
-            if (Device.checkFastboot())
-                Command.execDisplayed(mutableListOf("fastboot", "oem", "unlock")) else checkDevice()
+            if (Device.checkFastboot()) {
+                if (confirm("All your data will be gone.")) {
+                    Command.execDisplayed(mutableListOf("fastboot", "oem", "unlock"))
+                }
+            } else checkDevice()
         }
     }
 
