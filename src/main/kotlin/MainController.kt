@@ -1240,22 +1240,22 @@ class MainController : Initializable {
             val discord = Hyperlink("Xiaomi Community on Discord")
             discord.onAction = EventHandler {
                 if (XiaomiADBFastbootTools.linux)
-                    Runtime.getRuntime().exec("xdg-open https://discord.gg/xiaomi")
-                else Desktop.getDesktop().browse(URI("https://discord.gg/xiaomi"))
+                    Runtime.getRuntime().exec("xdg-open http://discord.szaki.io/")
+                else Desktop.getDesktop().browse(URI("http://discord.szaki.io/"))
             }
             discord.font = Font(15.0)
             val twitter = Hyperlink("Szaki on Twitter")
             twitter.onAction = EventHandler {
                 if (XiaomiADBFastbootTools.linux)
-                    Runtime.getRuntime().exec("xdg-open https://twitter.com/Szaki_EU")
-                else Desktop.getDesktop().browse(URI("https://twitter.com/Szaki_EU"))
+                    Runtime.getRuntime().exec("xdg-open http://twitter.szaki.io/")
+                else Desktop.getDesktop().browse(URI("http://twitter.szaki.io/"))
             }
             twitter.font = Font(15.0)
             val github = Hyperlink("Repository on GitHub")
             github.onAction = EventHandler {
                 if (XiaomiADBFastbootTools.linux)
-                    Runtime.getRuntime().exec("xdg-open https://github.com/Szaki/XiaomiADBFastbootTools")
-                else Desktop.getDesktop().browse(URI("https://github.com/Szaki/XiaomiADBFastbootTools"))
+                    Runtime.getRuntime().exec("xdg-open http://xaft.szaki.io/")
+                else Desktop.getDesktop().browse(URI("http://xaft.szaki.io/"))
             }
             github.font = Font(15.0)
             vb.children.addAll(discord, twitter, github)
