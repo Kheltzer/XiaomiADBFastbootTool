@@ -13,6 +13,7 @@ import javafx.scene.control.Alert.AlertType
 import javafx.scene.control.cell.CheckBoxTableCell
 import javafx.scene.control.cell.PropertyValueFactory
 import javafx.scene.image.ImageView
+import javafx.scene.input.KeyCode
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import javafx.scene.text.Font
@@ -21,6 +22,7 @@ import kotlinx.coroutines.*
 import java.awt.Desktop
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
+import java.awt.event.KeyEvent
 import java.io.File
 import java.net.URI
 import java.net.URL
@@ -359,6 +361,17 @@ class MainController : Initializable {
         } while (!(Device.mode == Mode.ADB || Device.mode == Mode.FASTBOOT || Device.mode == Mode.RECOVERY))
     }
 
+    fun TableView<App>.setKeyListener() {
+        this.setOnKeyPressed {
+            if (it.code == KeyCode.ENTER || it.code == KeyCode.SPACE)
+                this.selectionModel.selectedItems.forEach { app ->
+                    app.apply {
+                        selectedProperty().set(!selectedProperty().get())
+                    }
+                }
+        }
+    }
+
     override fun initialize(url: URL, rb: ResourceBundle?) {
         uncheckTableColumn.cellValueFactory = PropertyValueFactory("selected")
         uncheckTableColumn.setCellFactory { CheckBoxTableCell() }
@@ -399,6 +412,11 @@ class MainController : Initializable {
         reinstallerTableView.columns.setAll(recheckTableColumn, reappTableColumn, repackageTableColumn)
         disablerTableView.columns.setAll(discheckTableColumn, disappTableColumn, dispackageTableColumn)
         enablerTableView.columns.setAll(encheckTableColumn, enappTableColumn, enpackageTableColumn)
+
+        uninstallerTableView.setKeyListener()
+        reinstallerTableView.setKeyListener()
+        disablerTableView.setKeyListener()
+        enablerTableView.setKeyListener()
 
         Command.outputTextArea = outputTextArea
         Command.progressIndicator = progressIndicator
