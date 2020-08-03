@@ -22,7 +22,6 @@ import kotlinx.coroutines.*
 import java.awt.Desktop
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
-import java.awt.event.KeyEvent
 import java.io.File
 import java.net.URI
 import java.net.URL
