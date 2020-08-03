@@ -172,7 +172,7 @@ object AppManager {
                 var output = sb.toString()
                 output = if ("installed for user" in output)
                     "Success\n"
-                else "Failure [${output.substringAfter(pkg).trim()}]\n"
+                else "Failure [ADB error ${output.substringAfter(pkg).trim()}]\n"
                 withContext(Dispatchers.Main) {
                     outputTextArea.apply {
                         appendText("App: ${it.appnameProperty().get()}\n")
@@ -220,7 +220,7 @@ object AppManager {
                 }
                 val output = if ("disabled-user" in sb.toString())
                     "Success\n"
-                else "Failure\n"
+                else "Failure [ADB error]\n"
                 withContext(Dispatchers.Main) {
                     outputTextArea.apply {
                         appendText("App: ${it.appnameProperty().get()}\n")
@@ -259,7 +259,7 @@ object AppManager {
                 }
                 val output = if ("enabled" in sb.toString())
                     "Success\n"
-                else "Failure\n"
+                else "Failure [ADB error]\n"
                 withContext(Dispatchers.Main) {
                     outputTextArea.apply {
                         appendText("App: ${it.appnameProperty().get()}\n")
