@@ -254,7 +254,7 @@
                                     </TabPane>
                                     <FlowPane alignment="TOP_RIGHT" columnHalignment="CENTER" vgap="10.0" GridPane.columnIndex="1">
                                        <children>
-                                          <TitledPane fx:id="camera2Pane" animated="false" collapsible="false" disable="true" prefWidth="220.0" text="Camera2 (TWRP)">
+                                          <TitledPane fx:id="camera2Pane" animated="false" collapsible="false" disable="true" prefWidth="220.0" text="Camera2 API (HAL3)">
                                             <content>
                                               <AnchorPane minHeight="0.0" minWidth="0.0">
                                                    <children>
