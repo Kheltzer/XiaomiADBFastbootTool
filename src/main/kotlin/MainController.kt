@@ -1253,8 +1253,8 @@ class MainController : Initializable {
             val github = Hyperlink("Repository on GitHub")
             github.onAction = EventHandler {
                 if (XiaomiADBFastbootTools.linux)
-                    Runtime.getRuntime().exec("xdg-open http://xaft.szaki.io/")
-                else Desktop.getDesktop().browse(URI("http://xaft.szaki.io/"))
+                    Runtime.getRuntime().exec("xdg-open https://github.com/Szaki/XiaomiADBFastbootTools")
+                else Desktop.getDesktop().browse(URI("https://github.com/Szaki/XiaomiADBFastbootTools"))
             }
             github.font = Font(15.0)
             vb.children.addAll(discord, twitter, github)
