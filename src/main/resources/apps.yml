@@ -104,6 +104,7 @@ com.miui.wmsvc: WMService
 com.miui.yellowpage: Yellow Pages
 com.netflix.partner.activation: PartnerNetflixActivation
 com.qisiemoji.inputmethod: Kika Keyboard
+com.sohu.inputmethod.sogou.xiaomi: Sogou Keyboard
 com.tencent.mtt: QQ Browser
 com.tencent.soter.soterserver: SoterService
 com.xiaomi.ab: MAB
