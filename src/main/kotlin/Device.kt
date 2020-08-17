@@ -23,7 +23,7 @@ object Device {
         val propString = Command.exec(mutableListOf("adb", "shell", "getprop"))
         when {
             "unauthorized" in propString -> mode = Mode.AUTH
-            "no permissions" in propString -> mode = Mode.ADB_ERROR
+            "permissions" in propString -> mode = Mode.ADB_ERROR
             "no devices" !in propString -> {
                 props.clear()
                 propString.trim().lines().forEach {
@@ -86,7 +86,7 @@ object Device {
     suspend fun readFastboot() {
         val devices = Command.exec(mutableListOf("fastboot", "devices"), redirectErrorStream = false)
         when {
-            "no permissions" in devices -> mode = Mode.FASTBOOT_ERROR
+            "permissions" in devices -> mode = Mode.FASTBOOT_ERROR
             devices.isNotEmpty() -> {
                 props.clear()
                 Command.exec(mutableListOf("fastboot", "getvar", "all")).trim().lines().forEach {

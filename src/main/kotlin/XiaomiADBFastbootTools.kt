@@ -10,7 +10,7 @@ import java.io.File
 class XiaomiADBFastbootTools : Application() {
 
     companion object {
-        val version = "7.0.1"
+        val version = "7.0.2"
         val dir = File(System.getProperty("user.home"), "XiaomiADBFastbootTools")
         val win = "win" in System.getProperty("os.name").toLowerCase()
         val linux = "linux" in System.getProperty("os.name").toLowerCase()
