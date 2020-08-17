@@ -360,7 +360,7 @@ class MainController : Initializable {
         } while (!(Device.mode == Mode.ADB || Device.mode == Mode.FASTBOOT || Device.mode == Mode.RECOVERY))
     }
 
-    fun TableView<App>.setKeyListener() {
+    private fun TableView<App>.setKeyListener() {
         this.setOnKeyPressed {
             if (it.code == KeyCode.ENTER || it.code == KeyCode.SPACE)
                 this.selectionModel.selectedItems.forEach { app ->

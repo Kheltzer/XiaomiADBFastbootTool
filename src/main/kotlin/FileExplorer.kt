@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.util.*
 
-class FileExplorer(val statusTextField: TextField, val statusProgressBar: ProgressBar) {
+class FileExplorer(private val statusTextField: TextField, private val statusProgressBar: ProgressBar) {
 
     var path = "/"
 
@@ -25,22 +25,22 @@ class FileExplorer(val statusTextField: TextField, val statusProgressBar: Progre
         return when {
             bits.size < 6 -> null
             bits[5].length == 10 && bits[6].length == 5 -> AndroidFile(
-                bits[0][0] != '-',
-                bits.drop(7).joinToString(" ").trim(),
-                bits[4].toInt(),
-                "${bits[5]} ${bits[6]}"
+                    bits[0][0] != '-',
+                    bits.drop(7).joinToString(" ").trim(),
+                    bits[4].toInt(),
+                    "${bits[5]} ${bits[6]}"
             )
             bits[4].length == 10 && bits[5].length == 5 -> AndroidFile(
-                bits[0][0] != '-',
-                bits.drop(6).joinToString(" ").trim(),
-                bits[3].toInt(),
-                "${bits[4]} ${bits[5]}"
+                    bits[0][0] != '-',
+                    bits.drop(6).joinToString(" ").trim(),
+                    bits[3].toInt(),
+                    "${bits[4]} ${bits[5]}"
             )
             bits[3].length == 10 && bits[4].length == 5 -> AndroidFile(
-                bits[0][0] != '-',
-                bits.drop(5).joinToString(" ").trim(),
-                0,
-                "${bits[3]} ${bits[4]}"
+                    bits[0][0] != '-',
+                    bits.drop(5).joinToString(" ").trim(),
+                    0,
+                    "${bits[3]} ${bits[4]}"
             )
             else -> null
         }
@@ -56,15 +56,15 @@ class FileExplorer(val statusTextField: TextField, val statusProgressBar: Progre
     }
 
     fun getFiles(): ObservableList<AndroidFile> =
-        FXCollections.observableArrayList<AndroidFile>().also { list ->
-            val files = runBlocking { Command.exec(mutableListOf("adb", "shell", "ls", "-l", path)) }
-            files.trim().lines().forEach {
-                if ("ls:" !in it && ':' in it)
-                    makeFile(it)?.let { file ->
-                        list.add(file)
-                    }
+            FXCollections.observableArrayList<AndroidFile>().also { list ->
+                val files = runBlocking { Command.exec(mutableListOf("adb", "shell", "ls", "-l", path)) }
+                files.trim().lines().forEach {
+                    if ("ls:" !in it && ':' in it)
+                        makeFile(it)?.let { file ->
+                            list.add(file)
+                        }
+                }
             }
-        }
 
     private suspend fun exec(command: MutableList<String>) {
         withContext(Dispatchers.Main) {

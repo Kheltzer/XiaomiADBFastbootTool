@@ -60,12 +60,12 @@ object Command {
             it[0] = prefix + it[0]
             withContext(Dispatchers.IO) {
                 Scanner(startProcess(it + image?.absolutePath, true).inputStream, "UTF-8").useDelimiter("")
-                    .use { scanner ->
-                        while (scanner.hasNextLine())
-                            withContext(Dispatchers.Main) {
-                                outputTextArea.appendText(scanner.nextLine() + '\n')
-                            }
-                    }
+                        .use { scanner ->
+                            while (scanner.hasNextLine())
+                                withContext(Dispatchers.Main) {
+                                    outputTextArea.appendText(scanner.nextLine() + '\n')
+                                }
+                        }
             }
         }
         withContext(Dispatchers.Main) {

@@ -200,5 +200,5 @@ class FileExplorerController : Initializable {
     }
 
     private suspend fun close(event: EventObject) =
-        withContext(Dispatchers.Main) { ((event.source as Node).scene.window as Stage).close() }
+            withContext(Dispatchers.Main) { ((event.source as Node).scene.window as Stage).close() }
 }
