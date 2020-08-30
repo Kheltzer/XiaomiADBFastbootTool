@@ -300,7 +300,6 @@ class MainController : Initializable {
                 }
                 else -> {
                     infoTextArea.clear()
-                    codenameTextField.clear()
                     dpiTextField.clear()
                     widthTextField.clear()
                     heightTextField.clear()
