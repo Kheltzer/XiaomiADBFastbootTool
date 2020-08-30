@@ -35,7 +35,7 @@ object AppManager {
         withContext(Dispatchers.IO) {
             try {
                 URL("https://raw.githubusercontent.com/Szaki/XiaomiADBFastbootTools/master/src/main/resources/apps.yml").readText()
-                        .trim().lines()
+                    .trim().lines()
             } catch (ex: Exception) {
                 this::class.java.classLoader.getResource("apps.yml")?.readText()?.trim()?.lines()
             }?.forEach { line ->
@@ -60,17 +60,17 @@ object AppManager {
         val enableApps = mutableMapOf<String, MutableList<String>>()
         val deviceApps = mutableMapOf<String, String>()
         Command.exec(mutableListOf("adb", "shell", "pm", "list", "packages", "-u", "--user", user)).trim().lines()
-                .forEach {
-                    deviceApps[it.substringAfter(':').trim()] = "uninstalled"
-                }
+            .forEach {
+                deviceApps[it.substringAfter(':').trim()] = "uninstalled"
+            }
         Command.exec(mutableListOf("adb", "shell", "pm", "list", "packages", "-d", "--user", user)).trim().lines()
-                .forEach {
-                    deviceApps[it.substringAfter(':').trim()] = "disabled"
-                }
+            .forEach {
+                deviceApps[it.substringAfter(':').trim()] = "disabled"
+            }
         Command.exec(mutableListOf("adb", "shell", "pm", "list", "packages", "-e", "--user", user)).trim().lines()
-                .forEach {
-                    deviceApps[it.substringAfter(':').trim()] = "enabled"
-                }
+            .forEach {
+                deviceApps[it.substringAfter(':').trim()] = "enabled"
+            }
         potentialApps.forEach { (pkg, name) ->
             when (deviceApps[pkg]) {
                 "disabled" -> {
@@ -107,17 +107,17 @@ object AppManager {
                 val sb = StringBuilder()
                 withContext(Dispatchers.IO) {
                     Scanner(
-                            startProcess(
-                                    mutableListOf(
-                                            "${prefix}adb",
-                                            "shell",
-                                            "pm",
-                                            "uninstall",
-                                            "--user",
-                                            user,
-                                            pkg.trim()
-                                    )
-                            ).inputStream, "UTF-8"
+                        startProcess(
+                            mutableListOf(
+                                "${prefix}adb",
+                                "shell",
+                                "pm",
+                                "uninstall",
+                                "--user",
+                                user,
+                                pkg.trim()
+                            )
+                        ).inputStream, "UTF-8"
                     ).useDelimiter("").use { scanner ->
                         while (scanner.hasNextLine())
                             sb.append(scanner.nextLine() + '\n')
@@ -152,18 +152,18 @@ object AppManager {
                 val sb = StringBuilder()
                 withContext(Dispatchers.IO) {
                     Scanner(
-                            startProcess(
-                                    mutableListOf(
-                                            "${prefix}adb",
-                                            "shell",
-                                            "cmd",
-                                            "package",
-                                            "install-existing",
-                                            "--user",
-                                            user,
-                                            pkg.trim()
-                                    )
-                            ).inputStream, "UTF-8"
+                        startProcess(
+                            mutableListOf(
+                                "${prefix}adb",
+                                "shell",
+                                "cmd",
+                                "package",
+                                "install-existing",
+                                "--user",
+                                user,
+                                pkg.trim()
+                            )
+                        ).inputStream, "UTF-8"
                     ).useDelimiter("").use { scanner ->
                         while (scanner.hasNextLine())
                             sb.append(scanner.nextLine() + '\n')
@@ -202,17 +202,17 @@ object AppManager {
                 val sb = StringBuilder()
                 withContext(Dispatchers.IO) {
                     Scanner(
-                            startProcess(
-                                    mutableListOf(
-                                            "${prefix}adb",
-                                            "shell",
-                                            "pm",
-                                            "disable-user",
-                                            "--user",
-                                            user,
-                                            pkg.trim()
-                                    )
-                            ).inputStream, "UTF-8"
+                        startProcess(
+                            mutableListOf(
+                                "${prefix}adb",
+                                "shell",
+                                "pm",
+                                "disable-user",
+                                "--user",
+                                user,
+                                pkg.trim()
+                            )
+                        ).inputStream, "UTF-8"
                     ).useDelimiter("").use { scanner ->
                         while (scanner.hasNextLine())
                             sb.append(scanner.nextLine() + '\n')
@@ -250,8 +250,8 @@ object AppManager {
                 val sb = StringBuilder()
                 withContext(Dispatchers.IO) {
                     Scanner(
-                            startProcess(mutableListOf("${prefix}adb", "shell", "pm", "enable", "--user", user, pkg.trim()))
-                                    .inputStream, "UTF-8"
+                        startProcess(mutableListOf("${prefix}adb", "shell", "pm", "enable", "--user", user, pkg.trim()))
+                            .inputStream, "UTF-8"
                     ).useDelimiter("").use { scanner ->
                         while (scanner.hasNextLine())
                             sb.append(scanner.nextLine() + '\n')

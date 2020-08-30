@@ -42,22 +42,22 @@ object Device {
                         Mode.RECOVERY
                     else {
                         reinstaller =
-                                Command.exec(mutableListOf("adb", "shell", "cmd", "package", "install-existing xaft"))
-                                        .let {
-                                            !("not found" in it || "Unknown command" in it)
-                                        }
+                            Command.exec(mutableListOf("adb", "shell", "cmd", "package", "install-existing xaft"))
+                                .let {
+                                    !("not found" in it || "Unknown command" in it)
+                                }
                         disabler = "enabled" in Command.exec(
-                                mutableListOf(
-                                        "adb",
-                                        "shell",
-                                        "pm",
-                                        "enable",
-                                        "com.android.settings"
-                                )
+                            mutableListOf(
+                                "adb",
+                                "shell",
+                                "pm",
+                                "enable",
+                                "com.android.settings"
+                            )
                         )
                         dpi = try {
                             Command.exec(mutableListOf("adb", "shell", "wm", "density")).substringAfterLast(':')
-                                    .trim().toInt()
+                                .trim().toInt()
                         } catch (e: Exception) {
                             -1
                         }
@@ -81,7 +81,7 @@ object Device {
     }
 
     suspend fun checkFastboot() =
-            serial in Command.exec(mutableListOf("fastboot", "devices"), redirectErrorStream = false)
+        serial in Command.exec(mutableListOf("fastboot", "devices"), redirectErrorStream = false)
 
     suspend fun readFastboot() {
         val devices = Command.exec(mutableListOf("fastboot", "devices"), redirectErrorStream = false)
@@ -92,7 +92,7 @@ object Device {
                 Command.exec(mutableListOf("fastboot", "getvar", "all")).trim().lines().forEach {
                     if (it[0] == '(')
                         props[it.substringAfter(')').substringBeforeLast(':').trim()] =
-                                it.substringAfterLast(':').trim()
+                            it.substringAfterLast(':').trim()
                 }
                 if (props["product"].isNullOrEmpty() || (props["serialno"].isNullOrEmpty() && props["serial"].isNullOrEmpty()))
                     mode = Mode.FASTBOOT_ERROR

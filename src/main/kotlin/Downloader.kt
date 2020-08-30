@@ -19,9 +19,9 @@ class Downloader(link: String, private val target: File, private val progressLab
         startTime = System.currentTimeMillis()
         val job = scope.launch(Dispatchers.IO) {
             FileOutputStream(target).channel.transferFrom(
-                    Channels.newChannel(url.openStream()),
-                    0,
-                    Long.MAX_VALUE
+                Channels.newChannel(url.openStream()),
+                0,
+                Long.MAX_VALUE
             )
         }
         while (!job.isCompleted) {

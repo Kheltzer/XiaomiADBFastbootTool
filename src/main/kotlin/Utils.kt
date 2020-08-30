@@ -31,16 +31,16 @@ fun MutableMap<String, MutableList<String>>.add(key: String, value: String) {
 }
 
 fun startProcess(vararg command: String, redirectErrorStream: Boolean = false): Process =
-        ProcessBuilder(*command).directory(XiaomiADBFastbootTools.dir).redirectErrorStream(redirectErrorStream).start()
+    ProcessBuilder(*command).directory(XiaomiADBFastbootTools.dir).redirectErrorStream(redirectErrorStream).start()
 
 fun startProcess(command: List<String?>, redirectErrorStream: Boolean = false): Process =
-        ProcessBuilder(command).directory(XiaomiADBFastbootTools.dir).redirectErrorStream(redirectErrorStream).start()
+    ProcessBuilder(command).directory(XiaomiADBFastbootTools.dir).redirectErrorStream(redirectErrorStream).start()
 
 fun runScript(file: File, redirectErrorStream: Boolean = false): Process = if (XiaomiADBFastbootTools.win)
     ProcessBuilder("cmd.exe", "/c", file.absolutePath).directory(XiaomiADBFastbootTools.dir)
-            .redirectErrorStream(redirectErrorStream).start()
-else ProcessBuilder("sh", "-c", file.absolutePath).directory(XiaomiADBFastbootTools.dir)
         .redirectErrorStream(redirectErrorStream).start()
+else ProcessBuilder("sh", "-c", file.absolutePath).directory(XiaomiADBFastbootTools.dir)
+    .redirectErrorStream(redirectErrorStream).start()
 
 suspend fun Exception.alert() {
     val stringWriter = StringWriter()
@@ -51,7 +51,7 @@ suspend fun Exception.alert() {
             initStyle(StageStyle.UTILITY)
             title = "ERROR"
             headerText =
-                    "Unexpected exception!"
+                "Unexpected exception!"
             val vb = VBox()
             vb.alignment = Pos.CENTER
             val textArea = TextArea(stringWriter.toString()).apply {

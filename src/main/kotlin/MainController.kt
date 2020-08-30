@@ -339,16 +339,17 @@ class MainController : Initializable {
                     Mode.AUTH -> {
                         if ("Unauthorised" !in outputTextArea.text)
                             outputTextArea.text =
-                                    "Unauthorised device found!\nPlease allow USB debugging on the device!\n\n"
+                                "Unauthorised device found!\nPlease allow USB debugging on the device!\n\n"
                     }
                     Mode.ADB_ERROR -> {
                         if ("loaded" !in outputTextArea.text)
                             outputTextArea.text =
-                                    "ERROR: The device cannot be loaded!\nTry setting the USB configuration to data transfer or launching the application with root/admin privileges!\n\n"
+                                "ERROR: The device cannot be loaded!\nTry setting the USB configuration to data transfer or launching the application with root/admin privileges!\n\n"
                     }
                     Mode.FASTBOOT_ERROR -> {
                         if ("loaded" !in outputTextArea.text)
-                            outputTextArea.text = "ERROR: The device cannot be loaded!\nTry launching the application with root/admin privileges!\n\n"
+                            outputTextArea.text =
+                                "ERROR: The device cannot be loaded!\nTry launching the application with root/admin privileges!\n\n"
                     }
                     else -> {
                     }
@@ -392,18 +393,18 @@ class MainController : Initializable {
         enpackageTableColumn.cellValueFactory = PropertyValueFactory("packagename")
 
         partitionComboBox.items.addAll(
-                "boot", "cust", "modem", "persist", "recovery", "system"
+            "boot", "cust", "modem", "persist", "recovery", "system"
         )
         scriptComboBox.items.addAll(
-                "Clean install", "Clean install and lock", "Update"
+            "Clean install", "Clean install and lock", "Update"
         )
         branchComboBox.items.addAll(
-                "China Stable",
-                "EEA Stable",
-                "Global Stable",
-                "India Stable",
-                "Indonesia Stable",
-                "Russia Stable"
+            "China Stable",
+            "EEA Stable",
+            "Global Stable",
+            "India Stable",
+            "Indonesia Stable",
+            "Russia Stable"
         )
 
         uninstallerTableView.columns.setAll(uncheckTableColumn, unappTableColumn, unpackageTableColumn)
@@ -432,8 +433,8 @@ class MainController : Initializable {
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val link =
-                        URL("https://api.github.com/repos/Szaki/XiaomiADBFastbootTools/releases/latest").readText()
-                                .substringAfter("\"html_url\":\"").substringBefore('"')
+                    URL("https://api.github.com/repos/Szaki/XiaomiADBFastbootTools/releases/latest").readText()
+                        .substringAfter("\"html_url\":\"").substringBefore('"')
                 val latest = link.substringAfterLast('/')
                 if (latest > XiaomiADBFastbootTools.version)
                     withContext(Dispatchers.Main) {
@@ -444,7 +445,7 @@ class MainController : Initializable {
                             title = "New version available!"
                             graphic = ImageView("mitu.png")
                             headerText =
-                                    "Version $latest is available!"
+                                "Version $latest is available!"
                             vb.alignment = Pos.CENTER
                             download.onAction = EventHandler {
                                 if (XiaomiADBFastbootTools.linux)
@@ -469,7 +470,7 @@ class MainController : Initializable {
                         initStyle(StageStyle.UTILITY)
                         title = "Downloading SDK Platform Tools..."
                         headerText =
-                                "ERROR: Cannot find ADB/Fastboot!\nDownloading the latest version..."
+                            "ERROR: Cannot find ADB/Fastboot!\nDownloading the latest version..."
                         hb.alignment = Pos.CENTER
                         label.font = Font(15.0)
                         indicator.setPrefSize(35.0, 35.0)
@@ -481,16 +482,16 @@ class MainController : Initializable {
                             val file = File(XiaomiADBFastbootTools.dir, "platform-tools.zip")
                             when {
                                 XiaomiADBFastbootTools.win -> Downloader(
-                                        "https://dl.google.com/android/repository/platform-tools-latest-windows.zip",
-                                        file, label
+                                    "https://dl.google.com/android/repository/platform-tools-latest-windows.zip",
+                                    file, label
                                 ).start(this)
                                 XiaomiADBFastbootTools.linux -> Downloader(
-                                        "https://dl.google.com/android/repository/platform-tools-latest-linux.zip",
-                                        file, label
+                                    "https://dl.google.com/android/repository/platform-tools-latest-linux.zip",
+                                    file, label
                                 ).start(this)
                                 else -> Downloader(
-                                        "https://dl.google.com/android/repository/platform-tools-latest-darwin.zip",
-                                        file, label
+                                    "https://dl.google.com/android/repository/platform-tools-latest-darwin.zip",
+                                    file, label
                                 ).start(this)
                             }
                             withContext(Dispatchers.Main) {
@@ -522,7 +523,7 @@ class MainController : Initializable {
                         Alert(AlertType.ERROR).apply {
                             title = "Fatal Error"
                             headerText =
-                                    "ERROR: Couldn't run ADB/Fastboot!"
+                                "ERROR: Couldn't run ADB/Fastboot!"
                             showAndWait()
                         }
                         Platform.exit()
@@ -533,10 +534,10 @@ class MainController : Initializable {
     }
 
     private suspend fun checkCamera2(): Boolean =
-            "1" in Command.exec(mutableListOf("adb", "shell", "getprop", "persist.camera.HAL3.enabled"))
+        "1" in Command.exec(mutableListOf("adb", "shell", "getprop", "persist.camera.HAL3.enabled"))
 
     private suspend fun checkEIS(): Boolean =
-            "1" in Command.exec(mutableListOf("adb", "shell", "getprop", "persist.camera.eis.enable"))
+        "1" in Command.exec(mutableListOf("adb", "shell", "getprop", "persist.camera.eis.enable"))
 
     @FXML
     private fun disableCamera2ButtonPressed(event: ActionEvent) {
@@ -618,7 +619,7 @@ class MainController : Initializable {
             GlobalScope.launch {
                 if (Device.checkADB()) {
                     val attempt =
-                            Command.execDisplayed(mutableListOf("adb", "shell", "wm", "density", dpiTextField.text.trim()))
+                        Command.execDisplayed(mutableListOf("adb", "shell", "wm", "density", dpiTextField.text.trim()))
                     withContext(Dispatchers.Main) {
                         outputTextArea.text = when {
                             "permission" in attempt ->
@@ -660,15 +661,15 @@ class MainController : Initializable {
             GlobalScope.launch {
                 if (Device.checkADB()) {
                     val attempt =
-                            Command.execDisplayed(
-                                    mutableListOf(
-                                            "adb",
-                                            "shell",
-                                            "wm",
-                                            "size",
-                                            "${widthTextField.text.trim()}x${heightTextField.text.trim()}"
-                                    )
+                        Command.execDisplayed(
+                            mutableListOf(
+                                "adb",
+                                "shell",
+                                "wm",
+                                "size",
+                                "${widthTextField.text.trim()}x${heightTextField.text.trim()}"
                             )
+                        )
                     withContext(Dispatchers.Main) {
                         outputTextArea.text = when {
                             "permission" in attempt ->
@@ -782,13 +783,13 @@ class MainController : Initializable {
                     withContext(Dispatchers.Main) {
                         if ("FAILED" in Command.exec(mutableListOf("fastboot", "oem", "ignore", "anti"))) {
                             if ("FAILED" in Command.exec(
-                                            mutableListOf(
-                                                    "fastboot",
-                                                    "flash",
-                                                    "antirbpass",
-                                                    "dummy.img"
-                                            )
+                                    mutableListOf(
+                                        "fastboot",
+                                        "flash",
+                                        "antirbpass",
+                                        "dummy.img"
                                     )
+                                )
                             ) {
                                 outputTextArea.text = "Couldn't disable anti-rollback safeguard!"
                             } else outputTextArea.text = "Anti-rollback safeguard disabled!"
@@ -820,9 +821,9 @@ class MainController : Initializable {
                             if (confirm()) {
                                 if (autobootCheckBox.isSelected && pcb.trim() == "recovery")
                                     Command.exec(
-                                            mutableListOf("fastboot", "flash", pcb.trim()),
-                                            mutableListOf("fastboot", "boot"),
-                                            image = it
+                                        mutableListOf("fastboot", "flash", pcb.trim()),
+                                        mutableListOf("fastboot", "boot"),
+                                        image = it
                                     )
                                 else Command.exec(mutableListOf("fastboot", "flash", pcb.trim()), image = it)
                             }
@@ -874,9 +875,9 @@ class MainController : Initializable {
                                 "Clean install" -> ROMFlasher.flash("flash_all")
                                 "Clean install and lock" -> ROMFlasher.flash("flash_all_lock")
                                 "Update" -> ROMFlasher.flash(
-                                        dir.list()?.find { "flash_all_except" in it }?.substringBefore(
-                                                '.'
-                                        )
+                                    dir.list()?.find { "flash_all_except" in it }?.substringBefore(
+                                        '.'
+                                    )
                                 )
                             }
                         }
@@ -911,7 +912,7 @@ class MainController : Initializable {
             if (Device.checkFastboot()) {
                 if (confirm("All your data will be gone.")) {
                     Command.execDisplayed(
-                            mutableListOf("fastboot", "erase", "userdata")
+                        mutableListOf("fastboot", "erase", "userdata")
                     )
                 }
             } else checkDevice()
@@ -924,8 +925,8 @@ class MainController : Initializable {
             if (Device.checkFastboot()) {
                 if (confirm("All your data will be gone.")) {
                     Command.execDisplayed(
-                            mutableListOf("fastboot", "erase", "cache"),
-                            mutableListOf("fastboot", "erase", "userdata")
+                        mutableListOf("fastboot", "erase", "cache"),
+                        mutableListOf("fastboot", "erase", "userdata")
                     )
                 }
             } else checkDevice()
@@ -1224,17 +1225,17 @@ class MainController : Initializable {
             title = "About"
             graphic = ImageView("icon.png")
             headerText =
-                    "Xiaomi ADB/Fastboot Tools\nVersion ${XiaomiADBFastbootTools.version}\nCreated by Szaki\n\n" +
-                            "SDK Platform Tools\n${
-                                runBlocking {
-                                    Command.exec(
-                                            mutableListOf(
-                                                    "adb",
-                                                    "--version"
-                                            )
-                                    ).lines()[1]
-                                }
-                            }"
+                "Xiaomi ADB/Fastboot Tools\nVersion ${XiaomiADBFastbootTools.version}\nCreated by Szaki\n\n" +
+                        "SDK Platform Tools\n${
+                            runBlocking {
+                                Command.exec(
+                                    mutableListOf(
+                                        "adb",
+                                        "--version"
+                                    )
+                                ).lines()[1]
+                            }
+                        }"
             val vb = VBox()
             vb.alignment = Pos.CENTER
             val discord = Hyperlink("Xiaomi Community on Discord")
