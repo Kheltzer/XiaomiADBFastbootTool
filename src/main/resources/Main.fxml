@@ -68,8 +68,8 @@
     </MenuBar>
       <GridPane GridPane.rowIndex="1">
          <columnConstraints>
-            <ColumnConstraints percentWidth="30.0" />
-            <ColumnConstraints percentWidth="70.0" />
+            <ColumnConstraints percentWidth="33.0" />
+            <ColumnConstraints percentWidth="67.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -493,7 +493,7 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Button>
-                                                      <CheckBox fx:id="autobootCheckBox" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Autoboot to Recovery after it's flashed" GridPane.columnIndex="2" GridPane.columnSpan="2">
+                                                      <CheckBox fx:id="autobootCheckBox" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Autoboot to Recovery when it's flashed" GridPane.columnIndex="2" GridPane.columnSpan="2">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -568,9 +568,9 @@
                                              <children>
                                                 <GridPane hgap="16.0" layoutX="12.0" layoutY="12.0" vgap="16.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
                                                    <columnConstraints>
-                                                      <ColumnConstraints percentWidth="33.0" />
-                                                      <ColumnConstraints percentWidth="33.0" />
-                                                      <ColumnConstraints percentWidth="33.0" />
+                                                      <ColumnConstraints percentWidth="25.0" />
+                                                      <ColumnConstraints percentWidth="30.0" />
+                                                      <ColumnConstraints percentWidth="45.0" />
                                                    </columnConstraints>
                                                    <rowConstraints>
                                                       <RowConstraints />
@@ -586,7 +586,7 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Button>
-                                                      <Button fx:id="cachedataButton" mnemonicParsing="false" onAction="#cachedataButtonPressed" text="Wipe cache and userdata" textFill="RED" GridPane.columnIndex="2">
+                                                      <Button fx:id="cachedataButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cachedataButtonPressed" text="Wipe cache and userdata" textFill="RED" GridPane.columnIndex="2">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
