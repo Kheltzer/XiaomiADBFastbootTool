@@ -61,15 +61,15 @@ Yes, the Xiaomi ADB/Fastboot Tools was developed in Kotlin for the Java Virtual 
 
 #### Windows
 
-Install Oracle Java from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or OpenJDK from [here](https://adoptopenjdk.net/). [Ninite](https://www.ninite.com/) also includes AdoptOpenJDK.
+Install Oracle Java from [here](https://www.oracle.com/java/technologies/javase-downloads.html) or OpenJDK from [here](https://adoptopenjdk.net/). [Ninite](https://www.ninite.com/) also includes AdoptOpenJDK.
 
 #### MacOS
 
-Install Oracle Java from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html). You can also use Homebrew to install it (`oracle-jdk`).
+Install Oracle Java from [here](https://www.oracle.com/java/technologies/javase-downloads.html).
 
 #### Linux
 
-Install Oracle Java from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or OpenJDK from your preferred package manager (`openjdk-11-jre`).
+Install Oracle Java from [here](https://www.oracle.com/java/technologies/javase-downloads.html) or OpenJDK from your preferred package manager (`openjdk-11-jre`).
 
 ### The app on Windows doesn't detect my device even though it's connected and USB debugging is enabled. What could be the issue?
 
