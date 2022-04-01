@@ -1,8 +1,8 @@
-# Note: This project is outdated and no longer maintained.
+# Xiaomi ADB/Fastboot Tools
+
+## Note: This project is outdated and no longer maintained.
 
 Some functionalities don't work on more recent devices, while others aren't useful or necessary anymore. Alternatives for other functionalities, such as the App Manager, exist elsewhere online ([example](https://github.com/0x192/universal-android-debloater)).
-
-# Xiaomi ADB/Fastboot Tools
 
 ## Modules
 
